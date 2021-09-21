@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.tawkto.ui.profilescreen.ProfileViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.detailscreen.DetailsFragment">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivProfile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                app:imageUrl="@{viewModel.profile.avatar_url}" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tvFollower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@{`Followers: `+viewModel.profile.followers}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+        <TextView
+            android:id="@+id/tvFollowing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@{`Following: `+viewModel.profile.following}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvDetails"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            app:layout_constraintVertical_bias="0.16000003">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="@{`Name: `+ viewModel.profile.name}"
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:text="@{`Company: `+ viewModel.profile.company}"
+                    android:id="@+id/tvCompany"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:text="@{`Url: `+ viewModel.profile.html_url}"
+                    android:id="@+id/tvWebsite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cvDetails"
+            app:layout_constraintVertical_bias="0.25">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Write Some Note About Him..." />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

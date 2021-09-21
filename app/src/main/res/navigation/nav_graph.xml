@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/UserListFragment">
+
+    <fragment
+        android:id="@+id/UserListFragment"
+        android:name="com.example.tawkto.ui.userlistscreen.UserListFragment"
+        android:label="@string/list_fragment_label"
+        tools:layout="@layout/fragment_user_list">
+
+        <action
+            android:id="@+id/action_UserListFragment_to_ProfileFragment"
+            app:destination="@id/ProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ProfileFragment"
+        android:name="com.example.tawkto.ui.profilescreen.ProfileFragment"
+        android:label="@string/profile_fragment_label"
+        tools:layout="@layout/fragment_profile">
+
+        <action
+            android:id="@+id/action_ProfileFragment_to_UserListFragment"
+            app:destination="@id/UserListFragment"
+            app:popUpTo="@id/UserListFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="user"
+            app:argType="com.example.tawkto.model.User" />
+    </fragment>
+</navigation>
