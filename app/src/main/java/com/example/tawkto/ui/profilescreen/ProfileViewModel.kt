@@ -17,7 +17,6 @@ class ProfileViewModel(application: Application, user: User) : AndroidViewModel(
     var profile = repo.getProfileFromDB(user.userId)
 
     init {
-
         loadProfile(user)
     }
 
@@ -33,9 +32,8 @@ class ProfileViewModel(application: Application, user: User) : AndroidViewModel(
                 val tempProfile = repo.getProfileFromServer(user.userName)
                 repo.insertProfileToDB(user.userId, tempProfile)
 
-            } catch (networkError: IOException) {
+            } catch (networkError: Exception) {
                 networkError.printStackTrace()
-
             }
         }
     }
