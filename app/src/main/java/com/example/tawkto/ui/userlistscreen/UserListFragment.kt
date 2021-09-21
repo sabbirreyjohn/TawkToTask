@@ -37,10 +37,12 @@ class UserListFragment : Fragment() {
         binding.rcvPictures.addItemDecoration(
             DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         )
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.loadUsersFromDB().collectLatest {
                 adapter.submitData(it)
             }
+
+
         }
        setHasOptionsMenu(true)
         return binding.root
@@ -55,7 +57,7 @@ class UserListFragment : Fragment() {
         val searchView = item.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                lifecycleScope.launch {
+                viewLifecycleOwner.lifecycleScope.launch {
                     viewModel.loadUsersFromDB().collectLatest {
                         adapter.submitData(it.filter {
                             it.userName.contains(query!!.toRegex())
@@ -67,13 +69,13 @@ class UserListFragment : Fragment() {
 
             override fun onQueryTextChange(newText: String): Boolean {
                 if(newText.isNullOrBlank()){
-                    lifecycleScope.launch {
+                    viewLifecycleOwner.lifecycleScope.launch {
                         viewModel.loadUsersFromDB().collectLatest {
                             adapter.submitData(it)
                         }
                     }
                 }else{
-                    lifecycleScope.launch {
+                    viewLifecycleOwner.lifecycleScope.launch {
                         viewModel.loadUsersFromDB().collectLatest {
                             adapter.submitData(it.filter {
                                 it.userName.contains(newText!!.toRegex())

@@ -39,7 +39,6 @@ class UserListViewModel(application: Application) : AndroidViewModel(application
             try {
                 loadUsersFromDB()
                 _status.value = ApiStatus.DONE
-
             } catch (networkError: IOException) {
                 networkError.printStackTrace()
                 _status.value = ApiStatus.ERROR

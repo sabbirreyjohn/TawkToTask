@@ -1,5 +1,6 @@
 package com.example.tawkto.ui.userlistscreen
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -26,7 +27,7 @@ class UserListRepository(private val database: TheDatabase) {
 
     fun getPagingUsersFromDb(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<User>> {
         if (database == null) throw IllegalStateException("Database is not initialized")
-
+        Log.i("repository", "called")
         val pagingSourceFactory = { database.userDao.getUsers() }
         return Pager(
             config = pagingConfig,
